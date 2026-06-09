@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>andreaeditorials</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cinzel:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --cream: #faf6f0;
+      --parchment: #f2ebe0;
+      --blush: #edddd0;
+      --rose: #b87c6a;
+      --deep: #2a1f16;
+      --ink: #3a2e24;
+      --muted: #9a8070;
+      --gold: #b89060;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.8rem 4rem;
+      background: linear-gradient(to bottom, rgba(250,246,240,0.97), transparent);
+    }
+
+    .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--deep);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 3rem;
+    }
+
+    .nav-links a {
+      font-family: 'Cinzel', serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--deep); }
+
+    @media (max-width: 600px) {
+      nav { padding: 1.4rem 1.8rem; }
+      .nav-links { gap: 1.5rem; }
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: up 1.2s ease forwards 0.3s;
+    }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(4rem, 13vw, 11rem);
+      line-height: 0.95;
+      color: var(--deep);
+      letter-spacing: -0.01em;
+      opacity: 0;
+      animation: up 1.2s ease forwards 0.5s;
+    }
+
+    .hero-rule {
+      width: 60px;
+      height: 1px;
+      background: var(--rose);
+      margin: 3rem auto;
+      opacity: 0;
+      animation: up 1.2s ease forwards 0.7s;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      opacity: 0;
+      animation: up 1.2s ease forwards 0.9s;
+    }
+
+    .btn {
+      font-family: 'Cinzel', serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 1rem 2.6rem;
+      border: 1px solid var(--rose);
+      color: var(--rose);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.35s ease;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background: var(--rose);
+      color: var(--cream);
+    }
+
+    .btn-filled {
+      background: var(--rose);
+      color: var(--cream);
+    }
+
+    .btn-filled:hover {
+      background: #c48c7a;
+      border-color: #c48c7a;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Cinzel', serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--muted);
+      opacity: 0;
+      animation: up 1s ease forwards 1.2s;
+    }
+
+    /* PAGE — one long gradient flow */
+    body {
+      background: linear-gradient(
+        to bottom,
+        #ede0ce 0%,
+        #ede0ce 25%,
+        #f5ede4 38%,
+        #fdf8f3 50%,
+        #fdf8f3 58%,
+        #f0e4d8 70%,
+        #e6d0c0 82%,
+        #dfc8b4 100%
+      );
+    }
+
+    /* RESOURCES */
+    .resources {
+      padding: 8rem 2rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+
+    .section-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--rose);
+      display: block;
+      margin-bottom: 1.2rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 300;
+      color: var(--deep);
+      line-height: 1.1;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 4rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .card {
+      padding: 0;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      border-top: 1px solid #d4c4b4;
+      padding-top: 2.5rem;
+    }
+
+    .card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--deep);
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+
+    .card-desc {
+      font-size: 0.95rem;
+      color: #6a5040;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .card-link {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--rose);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      border-bottom: 1px solid #b8987860;
+      padding-bottom: 3px;
+      transition: border-color 0.3s, color 0.3s;
+    }
+
+    .card-link:hover {
+      color: var(--deep);
+      border-color: var(--deep);
+    }
+
+    /* ABOUT */
+    .about {
+      padding: 8rem 2rem;
+      text-align: center;
+    }
+
+    .about-content {
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .about-content .section-eyebrow { text-align: center; }
+
+    .about-content .section-title {
+      color: var(--deep);
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .about-content p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.95;
+      margin-bottom: 1.4rem;
+    }
+
+    /* HIRE */
+    .hire {
+      padding: 9rem 2rem;
+      text-align: center;
+    }
+
+    .hire .section-title { margin-bottom: 1.5rem; }
+
+    .hire-desc {
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--muted);
+      max-width: 500px;
+      margin: 0 auto 3.5rem;
+      line-height: 1.7;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    footer p {
+      font-family: 'Cinzel', serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+    }
+
+    /* ANIMATIONS */
+    @keyframes up {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+
+    .reveal.in { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="#">andreaeditorials</a>
+    <ul class="nav-links">
+      <li><a href="#resources">Resources</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#hire">Work with me</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-eyebrow">developmental editing · fantasy</p>
+    <h1 class="hero-name">andreaeditorials</h1>
+    <div class="hero-rule"></div>
+    <div class="hero-cta">
+      <a href="#resources" class="btn">Writing resources</a>
+      <a href="#hire" class="btn btn-filled">Work with me</a>
+    </div>
+    <span class="hero-scroll">↓ &nbsp; scroll</span>
+  </section>
+
+  <!-- RESOURCES -->
+  <section class="resources" id="resources">
+    <div class="section-header">
+      <h2 class="section-title reveal">Writing Resources</h2>
+    </div>
+    <div class="cards">
+
+      <div class="card reveal">
+        <h3 class="card-title">Character Development Guide</h3>
+        <p class="card-desc">How to build your character from the ground up. Goes into motivation, want vs. need, and all the stuff that makes a character real.</p>
+        <a href="https://docs.google.com/document/d/15nCvufUWZIjboaDYKXTeSHct06n756O_RcC4Y-2naFI/edit?usp=sharing" target="_blank" class="card-link">Download &nbsp;↓</a>
+      </div>
+
+      <div class="card reveal">
+        <h3 class="card-title">Chapter Plotting Guide</h3>
+        <p class="card-desc">Helpful for when you want to outline all your chapters.</p>
+        <a href="https://docs.google.com/spreadsheets/d/1z7M12AmUrqRYp8_UQPExihFFZFm3HpET/edit?usp=sharing&ouid=109613238108034268106&rtpof=true&sd=true" target="_blank" class="card-link">Download &nbsp;↓</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-content">
+      <h2 class="section-title reveal">Hi, I'm Andrea!</h2>
+      <p class="reveal">I'm a developmental editor for any type of fantasy. I work with writers who are deep in their drafts - usually past the "is this a good idea?" stage and into "why isn't this working yet?"</p>
+      <p class="reveal">I love the weird, the world-built, the magic systems with too many rules. Bring me your morally grey characters and your saggy second acts.</p>
+    </div>
+  </section>
+
+  <section class="hire" id="hire">
+    <h2 class="section-title reveal">Let's work together</h2>
+    <p class="hire-desc reveal">Developmental edits, manuscript assessments, single chapter reviews - you'll find everything on my Fiverr profile.</p>
+    <a href="https://www.fiverr.com/andreaeditorial?public_mode=true" target="_blank" class="btn btn-filled reveal">View my Fiverr →</a>
+  </section>
+
+  <footer>
+    <p>© 2026 andreaeditorials &nbsp;·&nbsp; Developmental Editor</p>
+  </footer>
+
+  <script>
+    const els = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('in'), i * 100);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(el => io.observe(el));
+  </script>
+
+</body>
+</html>
